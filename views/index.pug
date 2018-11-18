@@ -1,0 +1,22 @@
+extends layout.pug
+
+block content
+  h1.mt-5 Bills
+    a.btn.btn-primary(href='./bills/new' style='margin-left: 25px') New
+  table.table
+    thead
+      tr
+        th(scope='col') Bill Type
+        th(scope='col') Due Date
+        th(scope='col') Bill Company
+        th(scope='col') Amount Due
+        th(scope='col') Status
+    tbody
+      each bill in bills
+        tr
+          td
+            a(href='/bills/' + bill.id)= bill.type
+          td= bill.dueDate
+          td= bill.company
+          td= bill.amtDue
+          td= bill.paidStatus

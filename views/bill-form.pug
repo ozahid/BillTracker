@@ -1,0 +1,21 @@
+extends layout.pug
+
+block content
+  h1.mt-5= type
+  form(method="POST")
+    .form-group
+      label(for='type') Bill Type
+      input#type.form-control(type='text', placeholder='Enter Bill Type (gas, water, electric, etc.)', name="type", value=bill.type)
+    .form-group
+      label(for='dueDate') Due Date
+      input#dueDate.form-control(type='date', placeholder='Enter Due Date', name="dueDate", value=bill.dueDate)
+    .form-group
+      label(for='company') Bill Company
+      textarea#company.form-control(type='text', placeholder='Enter the Bill Company', name="company", value=bill.company)
+    .form-group
+      label(for='amtDue') Amount Due
+      textarea#amtDue.form-control(type='number', placeholder='Enter Bill Amount Due (in dollars)', name="amtDue", value=bill.amtDue)
+    .form-group
+      label(for='paidStatus') Status
+      textarea#paidStatus.form-control(type='text', placeholder='Enter the Status of the Bill', name="paidStatus", value=bill.paidStatus)
+    button.btn.btn-primary(type='submit') Submit
