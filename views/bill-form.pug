@@ -16,6 +16,13 @@ block content
       label(for='amtDue') Amount Due
       textarea#amtDue.form-control(type='number', placeholder='Enter Bill Amount Due (in dollars)', name="amtDue", value=bill.amtDue)
     .form-group
-      label(for='paidStatus') Status
-      textarea#paidStatus.form-control(type='text', placeholder='Enter the Status of the Bill', name="paidStatus", value=bill.paidStatus)
+      label(for='billStatus') Status: paid?
+      |
+      |
+      |
+      |
+      label(style='display:inline' for='paidStatusPaid') Yes
+        input#paidStatus.form-control(style='width:10%;display:inline' type='checkbox', name="paidStatus", value="true")
+      label(style='display:inline' for='paidStatusUnpaid') No
+        input#paidStatus.form-control(style='width:10%;display:inline' type='checkbox' name="paidStatus"  value="false")
     button.btn.btn-primary(type='submit') Submit
