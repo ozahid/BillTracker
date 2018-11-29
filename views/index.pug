@@ -1,17 +1,25 @@
 extends layout.pug
 
 block content
-  h1.mt-5 Bills
-    section(style='background:#E3E7E7;border-bottom: solid;width:100%')
+  h1.mt-5 BillTracker
+  h2 Adulting made easy!
+  |
+  hr
+  |
+  h3 Manage your bills here
+    |
+    hr
+    |
+    section(style='background:#E3E7E7; border-bottom:solid; width:100%;')
       ul
         li.form-group(style='display:inline')
-          label.control-label.requiredField(style='font-size:18px' for='viewList') View
+          label.control-label.requiredField(style='font-size:18px' for='viewList') View By:
               select#viewList.select.form-control.input-lg(form='viewList', name='viewList')
                 option(value='all', selected= all) All
                 option(value='paid', selected= paid) Paid
                 option(value='future', selected= future) Future
                 option(value='overdue', selected= overdue) Overdue
-        a.btn.btn-primary(href='./bills/new' style='margin-left: 25px;display:inline') New
+        a.btn.btn-primary(href='./bills/new' style='margin-left: 25px;display:inline') Add Bill
 
   each bill in bills
     section(style='background:#D4F4F6;border-bottom: solid;width:100%;height:250px')
@@ -25,33 +33,11 @@ block content
       ul(style='display:flex; justify-content: space-between; list-style-type:none; text-align:center')
         li(style='font-weight:bold;display:inline')= bill.dueDate.toLocaleDateString("en-US")
         li(style='font-weight:bold;display:inline;')="$" + bill.amtDue
-        if bill.paidStatus === true
+        if bill.paidStatus == 'paid'
           li.a.btn.btn-primary( style='background:green;margin-right:5.75%;padding:15px') paid
-        else if  bill.paidStatus === false && bill.dueDate < moment()
+        else if  bill.paidStatus == 'unpaid' && bill.dueDate < Date.now()
           li.a.btn.btn-primary( style='background:red;margin-right:5.75%;padding:15px') overdue
         else
           li.a.btn.btn-primary( style='background:red;margin-right:5.75%;padding:15px') pay
 
-  table.table
-    thead
-      tr
-        th(scope='col') Bill Company
-        th(scope='col') Due Date
-        th(scope='col') Bill Type
-        th(scope='col') Amount Due
-        th(scope='col') Status
-    tbody
-      each bill in bills
-        tr
-          td(style='color:red;background:green;height: 175px')
-            a(style='font-size:40px' href='/bills/' + bill.id)= bill.company
-          td(style='font-weight:bold')= bill.dueDate.toLocaleDateString("en-US")
-          td= bill.type
-          td= bill.amtDue
-          td
-            if bill.paidStatus === true
-              a.btn.btn-primary( style='background:green;padding:15px;margin-top:50px') paid
-            else if  bill.paidStatus === false && bill.dueDate < moment()
-              a.btn.btn-primary( style='background:red;padding:15px;margin-top:50px') Overdue
-            else
-              a.btn.btn-primary( style='background:red;padding:15px;margin-top:50px') pay
+  
