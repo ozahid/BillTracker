@@ -6,10 +6,7 @@
   "directories": {
     "test": "test"
   },
-  "scripts": {
-    "start": "node server.js",
-    "test": "mocha --timeout 10000"
-  },
+  
   "repository": {
     "type": "git",
     "url": "git+https://github.com/RJMMOZ/BillTracker.git"
